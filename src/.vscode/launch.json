@@ -10,7 +10,8 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/PoAnomalyDetector/bin/Debug/netcoreapp3.1/PoAnomalyDetector.dll",
-            "args": ["/mnt/c/Users/jlien/Repos/ml-hackathon-anomalies/SampleData/ApInv.csv","214"],
+            "args": ["-t","/mnt/c/Users/jlien/Repos/ml-hackathon-anomalies/SampleData/ApInv.csv","/mnt/c/Users/jlien/Repos/ml-hackathon-anomalies/Models"],
+            // "args": ["-p","/mnt/c/Users/jlien/Repos/ml-hackathon-anomalies/Models/model.zip","/mnt/c/Users/jlien/Repos/ml-hackathon-anomalies/SampleData/ApInv.csv","2"],
             "cwd": "${workspaceFolder}/PoAnomalyDetector",
             "console": "internalConsole",
             "stopAtEntry": false

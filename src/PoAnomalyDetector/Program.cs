@@ -7,44 +7,40 @@ namespace Sage.CRE.PoAnomalyDetector
 {
     public class Program
     {
+        public const string Usage = @"Usage:
+Train:
+    --train|-t path/to/csv/data path/to/output/model
+Predict:
+    --predict|-p path/to/model path/to/csv/data numberOfPredictions";
+
         public static void Main(string[] args)
         {
-            var dataPath = args[0];
-            var docSize = int.Parse(args[1]);
-
-            var mlContext = new MLContext();
-            IDataView dataView = mlContext.Data.LoadFromTextFile<ApInvoiceData>(path: dataPath, hasHeader: true, separatorChar: ',');
-
-            var predictions = DetectSpike(mlContext, docSize, dataView);
-
-            Console.WriteLine("Alert\tScore\tP-Value");
-            foreach (var p in predictions)
+            switch(args.Length < 1 ? string.Empty : args[0])
             {
-                var results = $"{p.Prediction[0]}\t{p.Prediction[1]:f2}\t{p.Prediction[2]:F2}";
-
-                if (p.Prediction[0] == 1)
-                {
-                    results += " <-- Spike detected";
-                }
-
-                Console.WriteLine(results);
+                case "--train":
+                case "-t":
+                    if (args.Length < 3)
+                    {
+                        Console.WriteLine("Train requires 2 arguments.");
+                        return;
+                    }
+                    Trainer.TrainModel(args[1], args[2]);
+                    break;
+                case "--predict":
+                case "-p":
+                    if (args.Length < 4)
+                    {
+                        Console.WriteLine("Predict requires 3 argument.");
+                        return;
+                    }
+                    Predictor.Predict(args[1], args[2], int.Parse(args[3]));
+                    break;
+                case "--help":
+                case "-h":
+                default:
+                    Console.WriteLine(Usage);
+                    return;
             }
-            Console.WriteLine("");
-        }
-
-        private static IEnumerable<ApInvoicePrediction> DetectSpike(MLContext mlContext, int docSize, IDataView productSales)
-        {
-            IidSpikeEstimator iidSpikeEstimator = mlContext.Transforms.DetectIidSpike(outputColumnName: nameof(ApInvoicePrediction.Prediction), inputColumnName: nameof(ApInvoiceData.InvoiceTotal), confidence: 95, pvalueHistoryLength: docSize / 4);
-            ITransformer iidSpikeTransform = iidSpikeEstimator.Fit(CreateEmptyDataView(mlContext));
-            IDataView transformedData = iidSpikeTransform.Transform(productSales);
-            return mlContext.Data.CreateEnumerable<ApInvoicePrediction>(transformedData, reuseRowObject: false);
-        }
-
-        private static IDataView CreateEmptyDataView(MLContext mlContext)
-        {
-            // Create empty DataView. We just need the schema to call Fit() for the time series transforms
-            IEnumerable<ApInvoiceData> enumerableData = new List<ApInvoiceData>();
-            return mlContext.Data.LoadFromEnumerable(enumerableData);
         }
     }
 }
