@@ -1,4 +1,4 @@
-namespace Sage.CRE.PoAnomalyDetector
+namespace Sage.CRE.ApAnomalyDetector
 {
     public class ApInvoicePrediction
     {

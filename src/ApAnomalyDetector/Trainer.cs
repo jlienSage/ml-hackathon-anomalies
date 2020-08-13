@@ -6,7 +6,7 @@ using Microsoft.ML.Data;
 using Microsoft.ML.Trainers;
 using static Microsoft.ML.DataOperationsCatalog;
 
-namespace Sage.CRE.PoAnomalyDetector
+namespace Sage.CRE.ApAnomalyDetector
 {
     public class Trainer
     {

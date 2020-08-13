@@ -6,7 +6,7 @@ using Microsoft.ML;
 using static Microsoft.ML.TrainCatalogBase;
 using System.Diagnostics;
 
-namespace Sage.CRE.PoAnomalyDetector
+namespace Sage.CRE.ApAnomalyDetector
 {
     public static class ConsoleHelper
     {

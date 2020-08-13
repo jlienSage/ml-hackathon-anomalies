@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Microsoft.ML;
 
-namespace Sage.CRE.PoAnomalyDetector
+namespace Sage.CRE.ApAnomalyDetector
 {
     public class Predictor
     {

@@ -1,7 +1,7 @@
 using System;
 using Microsoft.ML.Data;
 
-namespace Sage.CRE.PoAnomalyDetector
+namespace Sage.CRE.ApAnomalyDetector
 {
     public class ApInvoiceData
     {
