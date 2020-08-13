@@ -61,13 +61,13 @@ namespace Sage.CRE.ApAnomalyDetector
                 // Save train split
                 using (var fileStream = File.Create(trainDataSetFilePath))
                 {
-                    mlContext.Data.SaveAsText(trainData, fileStream, separatorChar: ',', headerRow: true, schema: true);
+                    mlContext.Data.SaveAsText(trainData, fileStream, separatorChar: ',', headerRow: true, schema: true, forceDense: true);
                 }
 
                 // Save test split 
                 using (var fileStream = File.Create(testDataSetFilePath))
                 {
-                    mlContext.Data.SaveAsText(testData, fileStream, separatorChar: ',', headerRow: true, schema: true);
+                    mlContext.Data.SaveAsText(testData, fileStream, separatorChar: ',', headerRow: true, schema: true, forceDense: true);
                 }
             }
         }
