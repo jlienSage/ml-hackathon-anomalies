@@ -151,7 +151,7 @@ namespace Sage.CRE.PoAnomalyDetector
                                             .ToList();
 
             // Print to console
-            data.ForEach(row => { row.ToString(); });
+            data.ForEach(row => { Console.WriteLine(row.ToString()); });
         }
     }
 }
