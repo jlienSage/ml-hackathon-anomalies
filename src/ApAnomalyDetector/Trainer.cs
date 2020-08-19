@@ -99,9 +99,9 @@ namespace Sage.CRE.ApAnomalyDetector
             {
                 FeatureColumnName = "NormalizedFeatures",   // The name of the feature column. The column data must be a known-sized vector of Single.
                 ExampleWeightColumnName = null,				// The name of the example weight column (optional). To use the weight column, the column data must be of type Single.
-                Rank = 16,									// The number of components in the PCA.
+                Rank = 4,									// The number of components in the PCA.
                 Oversampling = 20,							// Oversampling parameter for randomized PCA training.
-                EnsureZeroMean = true,						// If enabled, data is centered to be zero mean.
+                EnsureZeroMean = false,						// If enabled, data is centered to be zero mean.
                 Seed = 1									// The seed for random number generation.
             };
 

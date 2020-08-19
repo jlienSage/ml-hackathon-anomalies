@@ -16,10 +16,10 @@ namespace Sage.CRE.ApAnomalyDetector
             Console.WriteLine($"Predictions from saved model:");
 
             ITransformer model = mlContext.Model.Load(modelFile, out var inputSchema);
-
+            
             var predictionEngine = mlContext.Model.CreatePredictionEngine<ApInvoiceData, ApInvoicePrediction>(model);
-
-            Console.WriteLine($"\n \n Test {numberOfPredictions} transactions, from the test datasource, that should be predicted as fraud (true):");
+            
+            Console.WriteLine($"\n \n Test {numberOfPredictions} records, from the test datasource, that should be predicted to be anomalies (true):");
 
             mlContext.Data.CreateEnumerable<ApInvoiceData>(inputDataForPredictions, reuseRowObject: false)
                         .Where(x => x.Label > 0)
@@ -28,14 +28,14 @@ namespace Sage.CRE.ApAnomalyDetector
                         .ToList()
                         .ForEach(testData =>
                                     {
-                                        Console.WriteLine($"--- Transaction ---");
+                                        Console.WriteLine($"--- Record ---");
                                         Console.WriteLine(testData.ToString());
                                         Console.WriteLine(predictionEngine.Predict(testData).ToString());
                                         Console.WriteLine($"-------------------");
                                     });
 
 
-            Console.WriteLine($"\n \n Test {numberOfPredictions} transactions, from the test datasource, that should NOT be predicted as fraud (false):");
+            Console.WriteLine($"\n \n Test {numberOfPredictions} records, from the test datasource, that should NOT be predicted to be anomalies (false):");
 
             mlContext.Data.CreateEnumerable<ApInvoiceData>(inputDataForPredictions, reuseRowObject: false)
                        .Where(x => x.Label < 1)
@@ -43,7 +43,7 @@ namespace Sage.CRE.ApAnomalyDetector
                        .ToList()
                        .ForEach(testData =>
                                    {
-                                       Console.WriteLine($"--- Transaction ---");
+                                       Console.WriteLine($"--- Record ---");
                                        Console.WriteLine(testData.ToString());
                                        Console.WriteLine(predictionEngine.Predict(testData).ToString());
                                        Console.WriteLine($"-------------------");

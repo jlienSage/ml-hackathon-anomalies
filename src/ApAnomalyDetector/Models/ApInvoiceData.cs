@@ -8,38 +8,36 @@ namespace Sage.CRE.ApAnomalyDetector
         [LoadColumn(0)]
         public int Record { get; set; }
         [LoadColumn(1)]
-        public float SubcontractNum { get; set; }
-        [LoadColumn(2)]
         public float Vendor { get; set; }
-        [LoadColumn(3)]
+        [LoadColumn(2)]
         public float Job { get; set; }
-        [LoadColumn(4)]
+        [LoadColumn(3)]
         public float Phase { get; set; }
-        [LoadColumn(5)]
+        [LoadColumn(4)]
         public float Type { get; set; }
-        [LoadColumn(6)]
+        [LoadColumn(5)]
         public float Status { get; set; }
-        [LoadColumn(7)]
+        [LoadColumn(6)]
         public float Retention { get; set; }
-        [LoadColumn(8)]
+        [LoadColumn(7)]
         public float Paid { get; set; }
-        [LoadColumn(9)]
+        [LoadColumn(8)]
         public float InvoiceTotal { get; set; }
-        [LoadColumn(10)]
+        [LoadColumn(9)]
         public float TotalPaid { get; set; }
-        [LoadColumn(11)]
+        [LoadColumn(10)]
         public float Balance { get; set; }
-        [LoadColumn(12)]
+        [LoadColumn(11)]
         public float NetDue { get; set; }
-        [LoadColumn(13)]
+        [LoadColumn(12)]
         public float Period { get; set; }
-        [LoadColumn(14)]
+        [LoadColumn(13)]
         public float LinkNum { get; set; }
-        [LoadColumn(15)]
+        [LoadColumn(14)]
         public float BatchNum { get; set; }
-        [LoadColumn(16)]
+        [LoadColumn(15)]
         public float PostingYear { get; set; }
-        [LoadColumn(17)]
+        [LoadColumn(16)]
         public float Label { get; set; }
 
         public override string ToString()
